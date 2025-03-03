@@ -1,0 +1,56 @@
+<f:if condition="{settings.groupByYear}">
+    <!-- Grouped output with Year header: -->
+    <f:then>
+        <f:groupedFor each="{publications.1}" as="publicationlist"
+            groupBy="year"
+            groupKey="year">
+            <h2>{year}</h2>
+            <hr class="dark" />
+            <f:for each="{publicationlist}" as="publication" iteration="iterator">
+                <div class="research-output ucris content-element-margin-small">
+                    <f:format.html parseFuncTSPath="lib.parseFunc1">{publication.rendering}</f:format.html>
+                    <!-- Show status if not published -->
+                    <f:if condition="{publication.publicationStatus.uri} != '/dk/atira/pure/researchoutput/status/published'">
+                        <div><em>{publication.publicationStatus.value}</em></div>
+                    </f:if>
+                    <!-- More... links to detail page and is activates automatically if single pid is entered -->
+                    <f:if condition="{settings.singlePid}">
+                        <div class="more">
+                            <f:link.action action="show"
+                            arguments="{uuid : publication.uuid, what2show:'publ'}"
+                            controller="Pure"
+                            pageUid="{settings.singlePid}">
+                                <f:translate key="LLL:EXT:univie_pure/Resources/Private/Language/locallang.xlf:univiepur.more" />
+                            </f:link.action>
+                        </div>
+                    </f:if>
+                    <hr />
+                </div>
+            </f:for>
+        </f:groupedFor>
+    </f:then>
+    <!-- Output according to sorting: -->
+    <f:else>
+        <f:for each="{publications.1}" as="publication">
+            <div class="reserch-output ucris content-element-margin-small">
+                <f:format.html parseFuncTSPath="lib.parseFunc1">{publication.rendering}</f:format.html>
+                <!-- Show status if not published -->
+                <f:if condition="{publication.publicationStatus.uri} != '/dk/atira/pure/researchoutput/status/published'">
+                    <div><em>{publication.publicationStatus.value}</em></div>
+                </f:if>
+                <!-- More... links to detail page and is activated automatically if single pid is entered -->
+                <f:if condition="{settings.singlePid}">
+                    <div class="more">
+                        <f:link.action action="show"
+                        arguments="{uuid : publication.uuid, what2show:'publ'}"
+                        controller="Pure"
+                        pageUid="{settings.singlePid}">
+                            <f:translate key="LLL:EXT:univie_pure/Resources/Private/Language/locallang.xlf:univiepur.more" />
+                        </f:link.action>
+                    </div>
+                </f:if>
+                <hr />
+            </div>
+        </f:for>
+    </f:else>
+</f:if>

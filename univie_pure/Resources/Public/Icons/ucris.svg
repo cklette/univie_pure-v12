@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="35.073875mm"
+   height="42.375301mm"
+   viewBox="0 0 35.073875 42.375301"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="ucris-icon.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.64052329"
+     inkscape:cx="8.5867291"
+     inkscape:cy="395.77015"
+     inkscape:window-width="1920"
+     inkscape:window-height="1132"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="199.19112"
+       y="174.22826"
+       width="376.21274"
+       height="439.67847"
+       id="rect14133" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath47171">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.564999;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect47173"
+         width="35.073875"
+         height="42.375301"
+         x="46.414494"
+         y="43.78492" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath47175">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:2.13543;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect47177"
+         width="132.56268"
+         height="160.15862"
+         x="175.42485"
+         y="165.48631" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath47179">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.564999;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect47181"
+         width="35.073875"
+         height="42.375301"
+         x="46.414494"
+         y="43.78492" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.414494,-43.78492)">
+    <rect
+       style="fill:#0063a6;fill-opacity:1;stroke-width:0.29986"
+       id="rect8607"
+       width="48.435707"
+       height="63.655575"
+       x="38.764462"
+       y="33.791843"
+       clip-path="url(#clipPath47179)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.564999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect47145"
+       width="31.237656"
+       height="33.709614"
+       x="87.200165"
+       y="97.447418"
+       clip-path="url(#clipPath47171)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.1px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#ffffff"
+       x="51.007824"
+       y="79.503838"
+       id="text31830"><tspan
+         sodipodi:role="line"
+         id="tspan31828"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.1px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#ffffff"
+         x="51.007824"
+         y="79.503838">C</tspan></text>
+  </g>
+</svg>

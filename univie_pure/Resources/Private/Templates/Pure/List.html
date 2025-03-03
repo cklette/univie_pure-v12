@@ -1,0 +1,211 @@
+{namespace u=Univie\UniviePure\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:flashMessages />
+
+    <f:if condition="{settings.pager.insertAbove}">
+
+    </f:if>
+    <div class="tx_univiepure">
+        <div class="content-element-margin-small link-text">
+            <!-- ResearchOutput -->
+            <f:if condition="{researchoutput}">
+                <f:then>
+                    <f:if condition="{settings.showSearchForm}">
+                        <f:then>
+                            <f:render section="searchForm" arguments="{filter: filter}" />
+                        </f:then>
+                    </f:if>
+                    <f:for each="{researchoutput.contributionToJournal}" as="publication">
+                        <div class="my-3 border-b border-b-gray-lighter">
+                            <f:format.html>{publication.rendering}</f:format.html>
+                        </div>
+                    </f:for>
+                </f:then>
+            </f:if>
+
+            <!-- Activities -->
+            <f:if condition="{activities}">
+                <f:then>
+                    <f:debug title="Activites">{activities}</f:debug>
+                    <f:render partial="Pure/Activities" arguments="{activities: activities}" />
+                </f:then>
+            </f:if>
+
+            <!-- Press/Media -->
+            <f:if condition="{pressMedia}">
+                <f:then>
+                    <f:debug title="PressMedia">{pressMedia}</f:debug>
+                    <f:render partial="Pure/PressMedia" arguments="{pressMedia: pressMedia}" />
+                </f:then>
+            </f:if>
+
+            <!-- Projects -->
+            <f:if condition="{projects}">
+                <f:then>
+                </f:then>
+            </f:if>
+
+        </div>
+    </div>
+    <f:if condition="{settings.pager.insertBelow}">
+        <f:render section="paginator" arguments="{pagination: pagination, cObjUid: cObjUid}" />
+    </f:if>
+
+</f:section>
+
+<f:section name="searchForm">
+    <div class="pure-searchform row">
+        <div class="content-element-margin-zero">
+            <f:form action="list" name="pure-filter" noCache="1" method="POST" class="form-horizontal"
+                additionalAttributes="{autocomplete: 'off'}">
+                <div class="col-sm-12 col-xs-12  col-md-12">
+                    <label for="filter">
+                        <f:translate key="LLL:EXT:univie_pure/Resources/Private/Language/locallang.xlf:univiepur.searchForm" />
+                    </label>
+                </div>
+                <div class="col-sm-8 col-xs-12  col-md-8">
+                    <f:form.textfield id="filter" class="form-control" type="text" name="filter" value="{filter}" />
+                </div>
+                <div class="col-sm-4 col-sm-12 col-md-4" class="control-label">
+                    <f:form.button type="submit" value="" class="btn btn-submit btn-default">
+                        <f:translate key="LLL:EXT:univie_pure/Resources/Private/Language/locallang.xlf:univiepur.searchSubmit" />
+                    </f:form.button>
+                </div>
+            </f:form>
+        </div>
+    </div>
+    <hr>
+</f:section>
+
+<!--- PAGINATION: -->
+<f:section name="paginator">
+    <div class="pager">
+        <div class="counts mt-10 mb-6 md:mb-0 md:mt-16">
+            {pagination.from} {f:translate(key:'pagination.to')}
+            {pagination.to} {f:translate(key:'pagination.outOf')} {pagination.total}
+        </div>
+        <nav class="fluid-container-lg-no-padding mt-5 mb-16 md:mt-8">
+            <f:if condition="{pagination.pages}">
+                <f:then>
+                    <!-- Pagination start -->
+                    <ul class="relative mx-auto flex flex-wrap justify-center gap-1 px-8 md:px-10 desktop:gap-2">
+                        <!-- First page start -->
+                        <f:if condition="{pagination.isFirstPage}">
+                            <f:else>
+                                <li>
+                                    <f:link.action
+                                        additionalAttributes="{class: 'flex aspect-square w-9 items-center justify-center rounded bg-gray-lightest text-center text-xl outline-offset-2 hover:bg-primary hover:text-primary-light focus-visible:bg-primary focus-visible:text-primary-light desktop:w-12'}">
+                                        <span
+                                            class="icon-chevron-double-left"
+                                            aria-hidden="true">
+                                        </span>
+                                        <span class="sr-only">{f:translate(key:'pagination_first')}</span>
+                                    </f:link.action>
+                                </li>
+                            </f:else>
+                        </f:if>
+                        <!-- First page end -->
+
+                        <!-- Previous page start -->
+                        <f:if condition="{pagination.previousPage}">
+                            <f:then>
+                                <f:if condition="{pagination.previousPage} > 1">
+                                    <f:then>
+                                        <li>
+                                            <f:link.action arguments="{cobjuid: pagination.cObjUid, currentpage: pagination.previousPage}"
+                                                additionalAttributes="{class: 'flex aspect-square w-9 items-center justify-center rounded bg-gray-lightest text-center text-xl outline-offset-2 hover:bg-primary hover:text-primary-light focus-visible:bg-primary focus-visible:text-primary-light desktop:w-12'}">
+                                                <span
+                                                    class="icon-chevron-left"
+                                                    aria-hidden="true"
+                                                ></span>
+                                                <span class="sr-only">{f:translate(key:'pagination_previous')}</span>
+                                            </f:link.action>
+                                    </li>
+                                    </f:then>
+                                </f:if>
+
+                            </f:then>
+                        </f:if>
+                        <!-- Previous page end -->
+
+                        <!-- Ellipsis for less pages -->
+                        <f:if condition="{pagination.current} > 2">
+                            <li>
+                                <span class="flex aspect-square w-9 items-center justify-center text-center desktop:w-12">…</span>
+                            </li>
+                        </f:if>
+                        <!-- Ellipsis for less pages end-->
+
+                        <!-- Numbered pages start -->
+                        <f:for each="{pagination.pages}" as="page">
+                            <li>
+                                <f:if condition="{page.isCurrent}">
+                                    <f:then>
+                                        <a href="#" class="flex aspect-square w-9 items-center justify-center rounded bg-primary text-center text-primary-light outline-offset-2 desktop:w-12">
+                                            <span class="sr-only">{f:translate(key:'page')}</span>
+                                            <span>{page.number}</span>
+                                        </a>
+                                    </f:then>
+                                    <f:else>
+                                        <f:link.action arguments="{cobjuid: pagination.cObjUid, currentpage: page.number}"
+                                            additionalAttributes="{class: 'flex aspect-square w-9 items-center justify-center rounded text-center outline-offset-2 hover:bg-primary hover:text-primary-light focus-visible:bg-primary focus-visible:text-primary-light desktop:w-12'}">
+                                            <span class="sr-only">{f:translate(key:'page')}</span>
+                                            {page.number}
+                                        </f:link.action>
+                                    </f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                        <!-- Numbered pages end -->
+
+                        <!-- Ellipsis for more pages -->
+                        <f:if condition="(!{pagination.isLastPage}) && ({pagination.current} < {pagination.numberOfPages -2})">
+                            <li>
+                                <span class="flex aspect-square w-9 items-center justify-center text-center desktop:w-12">…</span>
+                            </li>
+                        </f:if>
+
+                        <!-- Ellipsis for more pages end -->
+
+                        <!-- Next page start -->
+                        <f:if condition="{pagination.nextPage}">
+                            <f:then>
+                                <li>
+                                    <f:link.action arguments="{cobjuid: pagination.cObjUid, currentpage: pagination.nextPage}"
+                                        additionalAttributes="{class: 'flex aspect-square w-9 items-center justify-center rounded bg-gray-lightest text-center text-xl outline-offset-2 hover:bg-primary hover:text-primary-light focus-visible:bg-primary focus-visible:text-primary-light desktop:w-12'}">
+                                        <span class="sr-only">{f:translate(key:'pagination_next')}</span>
+                                        <span
+                                            class="icon-chevron-right"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </f:link.action>
+                                </li>
+                            </f:then>
+                        </f:if>
+                        <!-- Next page end -->
+
+                        <!-- Last page start -->
+                        <f:if condition="{pagination.isLastPage}">
+                            <f:else>
+                                <li>
+                                    <f:link.action arguments="{cobjuid: pagination.cObjUid, currentpage: pagination.lastPage}"
+                                        additionalAttributes="{class: 'flex aspect-square w-9 items-center justify-center rounded bg-gray-lightest text-center text-xl outline-offset-2 hover:bg-primary hover:text-primary-light focus-visible:bg-primary focus-visible:text-primary-light desktop:w-12'}">
+                                        <span class="sr-only">{f:translate(key:'pagination_last')}</span>
+                                        <span
+                                            class="icon-chevron-double-right"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </f:link.action>
+                                </li>
+                            </f:else>
+                        </f:if>
+                        <!-- Last page end -->
+                    </ul>
+                    <!-- Pagination end -->
+                </f:then>
+            </f:if>
+        </nav>
+     </div>
+</f:section>

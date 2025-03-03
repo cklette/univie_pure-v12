@@ -1,0 +1,103 @@
+{namespace u=Univie\UniviePure\ViewHelpers}
+
+<f:if condition="{configuration.insertAbove}">
+    <f:render section="paginator" arguments="{pagination: pagination, totalItems:totalItems, filter:contentArguments.filter}" />
+</f:if>
+
+<f:if condition="{contentArguments.publications}">
+    <f:then>
+        <f:render partial="Pure/Publications" arguments="{publications: contentArguments.publications}" />
+    </f:then>
+</f:if>
+
+<f:if condition="{contentArguments.activities}">
+    <f:then><f:render partial="Pure/Activities" arguments="{activities: contentArguments.activities}" /></f:then>
+</f:if>
+
+<f:if condition="{contentArguments.pressMedia}">
+    <f:then><f:render partial="Pure/PressMedia" arguments="{pressMedia: contentArguments.pressMedia}" /></f:then>
+</f:if>
+
+<f:if condition="{contentArguments.projects}">
+    <f:then><f:render partial="Pure/Projects" arguments="{projects: contentArguments.projects}" /></f:then>
+</f:if>
+
+<f:if condition="{configuration.insertBelow}">
+    <f:render section="paginator" arguments="{pagination: pagination, totalItems:totalItems, filter:contentArguments.filter}" />
+</f:if>
+
+
+<f:section name="paginator">
+    <div class="row content-element-margin-small pager">
+        <div class="col-md-6">
+            {f:translate(key:'pagination.totalItems')} {totalItems.from} {f:translate(key:'pagination.to')} {totalItems.to} {f:translate(key:'pagination.outOf')} {totalItems.totalItems}
+        </div>
+        <div class="col-md-6">
+            <f:if condition="{pagination.pages}">
+                <f:then>
+                    <div class="pagination-container" style="display:flex;justify-content:flex-end;align-items:center;">
+                        <div class="pagination">
+
+                            <!-- First -->
+                            <f:if condition="{pagination.isFirstPage}">
+                                <f:else>
+                                    <span class="first">
+                                        <u:link><span class="visually-hidden">{f:translate(key:'pagination_first')}</span><span class="icon-pagination-first"></span></u:link>
+                                    </span>
+                                </f:else>
+                            </f:if>
+
+                            <!-- Previous -->
+                            <f:if condition="{pagination.previousPage}">
+                                <f:then>
+                                    <span class="previous">
+                                        <f:if condition="{pagination.previousPage} > 1">
+                                            <f:then>
+                                                <u:link additionalParams="{p: pagination.pagerName, c: pagination.cObjUid, n: pagination.previousPage}"><span class="visually-hidden">{f:translate(key:'pagination_previous')}</span><span class="icon-pagination-prev"></span></u:link>
+                                            </f:then>
+                                        </f:if>
+                                    </span>
+                                </f:then>
+                            </f:if>
+
+                            <!-- Numbered pages -->
+                            <span  style="margin-left:0.5em;margin-right:0.5em;">
+                            <f:for each="{pagination.pages}" as="page">
+                                <f:if condition="{page.isCurrent}">
+                                    <f:then>
+                                        <span class="current"><span class="visually-hidden">{f:translate(key:'page')}&nbsp;</span>{page.number}</span>
+                                    </f:then>
+                                    <f:else>
+                                        <span>
+                                             <u:link additionalParams="{p: pagination.pagerName, c: pagination.cObjUid, n: page.number}"><span class="visually-hidden">{f:translate(key:'page')}&nbsp;</span>{page.number}</u:link>
+                                        </span>
+                                    </f:else>
+                                </f:if>
+                            </f:for>
+                            </span>
+
+                            <!-- Next -->
+                            <f:if condition="{pagination.nextPage}">
+                                <f:then>
+                                    <span class="next">
+                                    <u:link additionalParams="{p: pagination.pagerName, c: pagination.cObjUid, n: pagination.nextPage}" addQueryString="TRUE"  addQueryStringMethod="POST"><span class="visually-hidden">{f:translate(key:'pagination_next')}</span><span class="icon-pagination-next"></span></u:link>
+                                    </span>
+                                </f:then>
+                            </f:if>
+
+                            <!-- Last -->
+                            <f:if condition="{pagination.isLastPage}">
+                                <f:else>
+                                    <span class="last">
+                                    <u:link additionalParams="{p: pagination.pagerName, c: pagination.cObjUid, n: pagination.lastPage}" addQueryString="TRUE"  addQueryStringMethod="POST"><span class="visually-hidden">{f:translate(key:'pagination_last')}</span><span class="icon-pagination-last" /></u:link>
+                                    </span>
+                                </f:else>
+                            </f:if>
+
+                        </div>
+                    </div>
+                </f:then>
+            </f:if>
+        </div>
+    </div>
+</f:section>
